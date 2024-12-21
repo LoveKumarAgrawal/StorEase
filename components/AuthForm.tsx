@@ -17,6 +17,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { createAccount } from "@/lib/actions/user.actions";
+import OptModal from "@/components/OPTModal";
 
 type FormType = "sign-in" | "sign-up";
 
@@ -33,7 +34,7 @@ const authFormSchema = (formType: FormType) => {
 const AuthForm = ({ type }: { type: FormType }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [accountId, setAccountId] = useState<number | null>(null);
+  const [accountId, setAccountId] = useState(null);
 
   const formSchema = authFormSchema(type);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -133,6 +134,10 @@ const AuthForm = ({ type }: { type: FormType }) => {
         </form>
       </Form>
       {/* Opt Verification */}
+
+      {accountId && (
+        <OptModal email={form.getValues("email")} accountId={accountId} />
+      )}
     </>
   );
 };
