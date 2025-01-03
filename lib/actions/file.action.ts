@@ -143,7 +143,6 @@ export const updateFileUsers = async ({
   }
 };
 
-
 export const deleteFile = async ({
   fileId,
   bucketFileId,
@@ -154,14 +153,14 @@ export const deleteFile = async ({
     const deletedFile = await databases.deleteDocument(
       appwriteConfig.databaseId,
       appwriteConfig.filesCollectionId,
-      fileId
+      fileId,
     );
 
-    if(deletedFile) {
-      await storage.deleteFile(appwriteConfig.bucketId, bucketFileId)
+    if (deletedFile) {
+      await storage.deleteFile(appwriteConfig.bucketId, bucketFileId);
     }
-    revalidatePath(path)
-    return parseStringify({status: "success"})
+    revalidatePath(path);
+    return parseStringify({ status: "success" });
   } catch (error) {
     handleError(error, "Failed to delete file");
   }

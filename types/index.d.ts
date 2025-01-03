@@ -1,3 +1,6 @@
+import { Models } from "node-appwrite";
+import React from "react";
+
 export type FileType = "document" | "image" | "video" | "audio" | "other";
 
 export interface ActionType {
