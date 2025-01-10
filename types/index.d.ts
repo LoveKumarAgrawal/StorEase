@@ -75,3 +75,18 @@ export interface ShareInputProps {
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove: (email: string) => void;
 }
+
+interface SpaceCategory {
+  size: number;
+  latestDate: string;
+}
+
+export interface TotalSpace {
+  image: SpaceCategory;
+  document: SpaceCategory;
+  video: SpaceCategory;
+  audio: SpaceCategory;
+  other: SpaceCategory;
+  used: number;
+  all: number;
+}
